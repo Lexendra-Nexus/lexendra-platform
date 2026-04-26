@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+  --legal-bg-rgb: 255 255 255;
+  --legal-bg-light-rgb: 255 255 255;
+  --legal-surface-rgb: 245 245 245;
+  --legal-surface-light-rgb: 238 238 238;
+  --legal-text-rgb: 0 0 0;
+  --legal-text-light-rgb: 0 0 0;
+  --legal-gray-rgb: 0 0 0;
+  --legal-border-rgb: 218 218 218;
+  --legal-accent-rgb: 0 0 0;
+  --legal-accent-light-rgb: 30 30 30;
+  --legal-primary-rgb: 0 0 0;
+  --legal-light-gray-rgb: 238 238 238;
+  --legal-dark-rgb: 0 0 0;
+  --legal-light-rgb: 255 255 255;
+  --legal-success-rgb: 22 163 74;
+  --legal-warning-rgb: 217 119 6;
+  --legal-error-rgb: 220 38 38;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --legal-bg-rgb: 0 0 0;
+    --legal-bg-light-rgb: 10 10 10;
+    --legal-surface-rgb: 18 18 18;
+    --legal-surface-light-rgb: 27 27 27;
+    --legal-text-rgb: 255 255 255;
+    --legal-text-light-rgb: 255 255 255;
+    --legal-gray-rgb: 255 255 255;
+    --legal-border-rgb: 45 45 45;
+    --legal-accent-rgb: 255 255 255;
+    --legal-accent-light-rgb: 220 220 220;
+    --legal-primary-rgb: 0 0 0;
+    --legal-light-gray-rgb: 36 36 36;
+    --legal-dark-rgb: 0 0 0;
+    --legal-light-rgb: 255 255 255;
+    --legal-success-rgb: 74 222 128;
+    --legal-warning-rgb: 251 191 36;
+    --legal-error-rgb: 248 113 113;
+  }
+}
+
+@layer base {
+  * {
+    @apply font-lora;
+  }
+
+  body {
+    @apply bg-legal-bg text-legal-text;
+    font-family: 'Lora', serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: rgb(var(--legal-bg-rgb));
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--legal-bg-light-rgb));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--legal-border-rgb));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--legal-gray-rgb));
+  }
+
+  /* Selection styling */
+  ::selection {
+    background-color: rgb(var(--legal-accent-rgb));
+    color: rgb(var(--legal-light-rgb));
+  }
+
+  /* Focus visible states */
+  :focus-visible {
+    outline: 2px solid rgb(var(--legal-accent-rgb));
+    outline-offset: 2px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-lora font-semibold text-legal-text;
+  }
+
+  p {
+    @apply text-legal-text;
+  }
+}
+
+.pdf-preview {
+  background: #ffffff;
+  color: #000000;
+}
+
+@layer components {
+  /* Primary button */
+  .btn-primary {
+    @apply px-4 py-2 bg-legal-primary text-white font-medium rounded-lg transition-colors duration-200;
+    @apply hover:bg-legal-light active:bg-legal-dark;
+    @apply focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-legal-primary;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply px-4 py-2 border border-legal-primary text-white font-medium rounded-lg transition-colors duration-200;
+    @apply hover:bg-legal-primary hover:text-white active:bg-legal-dark active:text-white;
+    @apply focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-legal-primary;
+  }
+
+  /* Input base */
+  .input-base {
+    @apply w-full px-4 py-3 bg-legal-bgLight border border-legal-border rounded-lg text-legal-text font-lora;
+    @apply focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-legal-primary;
+    @apply transition-colors duration-200;
+  }
+
+  .input-base::placeholder {
+    @apply text-legal-text;
+  }
+
+  /* Text area */
+  .textarea-base {
+    @apply w-full px-4 py-3 bg-legal-bgLight border border-legal-border rounded-lg text-legal-text font-lora resize-none;
+    @apply focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-legal-primary;
+    @apply transition-colors duration-200;
+  }
+
+  .textarea-base::placeholder {
+    @apply text-legal-text;
+  }
+
+  /* Sidebar */
+  .sidebar-link {
+    @apply px-3 py-2 rounded-lg text-legal-text font-lora transition-colors duration-200;
+    @apply hover:bg-legal-lightGray hover:text-legal-dark;
+    @apply active:bg-legal-primary active:text-white;
+  }
+
+  /* Message container */
+  .message-container {
+    @apply flex gap-4 mb-4;
+  }
+
+  .message-content {
+    @apply flex-1 rounded-lg px-4 py-3;
+  }
+
+  .message-user {
+    @apply bg-legal-primary text-white;
+  }
+
+  .message-assistant {
+    @apply bg-legal-lightGray text-legal-dark;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-block px-2 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-success {
+    @apply bg-legal-success text-white;
+  }
+
+  .badge-warning {
+    @apply bg-legal-warning text-white;
+  }
+
+  .badge-error {
+    @apply bg-legal-error text-white;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.3s ease-out;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  /* Text utilities */
+  .text-truncate {
+    @apply truncate;
+  }
+
+  .text-clamp {
+    @apply line-clamp-2;
+  }
+
+  /* Spacing utilities */
+  .space-compact {
+    @apply gap-2;
+  }
+
+  .space-comfortable {
+    @apply gap-4;
+  }
+}
